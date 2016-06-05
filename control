@@ -1,0 +1,9 @@
+Package: com.evilgoldfish.chronofeed
+Name: Chronofeed
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: I can judge the photos on my feed myself, Facebook.
+Maintainer: evilgoldfish
+Author: evilgoldfish
+Section: Tweaks
