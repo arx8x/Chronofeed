@@ -14,15 +14,21 @@
 	return nil;
 }*/
 
--(NSArray *)posts {
+-(NSArray *)posts
+{
 	NSArray *posts = %orig;
-	NSArray *timeSortedPosts = [posts sortedArrayUsingComparator:^NSComparisonResult(IGFeedItem *item1, IGFeedItem *item2) {
-			if (item1.takenAtDate.date < item2.takenAtDate.date)
-				return NSOrderedDescending;
-			else if (item1.takenAtDate.date > item2.takenAtDate.date)
-				return NSOrderedAscending;
-			return NSOrderedSame;
-		}];
+
+	NSArray *timeSortedPosts = [posts sortedArrayUsingComparator:
+	^NSComparisonResult(IGFeedItem *item1, IGFeedItem *item2)
+	{
+		if(![item1 respondsToSelector:@selector(takenAtDate)] || ![item2 respondsToSelector:@selector(takenAtDate)])
+		{
+			return 1;
+		}
+		return [item2.takenAtDate.date compare:item1.takenAtDate.date];
+	}
+	];
+	[timeSortedPosts description];
 	return timeSortedPosts;
 }
 
